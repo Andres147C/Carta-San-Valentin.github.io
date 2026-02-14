@@ -1,0 +1,232 @@
+/* Configuración General */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+    overflow: hidden;
+}
+
+/* Contenedor Principal */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+/* EL SOBRE */
+.envelope {
+    position: relative;
+    width: 600px;
+    height: 380px;
+    background-color: #f48fb1;
+    border-radius: 15px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgba(255,255,255,0.3);
+    z-index: 5;
+    transition: transform 0.3s ease;
+}
+
+/* TAPA DEL SOBRE (Animada) */
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 300px solid transparent;
+    border-right: 300px solid transparent;
+    border-top: 200px solid #f06292;
+    z-index: 10;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+    transform-origin: top;
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Clase para abrir la tapa */
+.envelope.open-lid::before {
+    transform: rotateX(160deg);
+    z-index: 1; /* Pasa atrás de la carta al abrirse */
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(30deg, #f8bbd0 45%, transparent 50%),
+        linear-gradient(-30deg, #f8bbd0 45%, transparent 50%),
+        linear-gradient(to top, #f8bbd0 40%, transparent 100%);
+    border-radius: 0 0 15px 15px;
+    z-index: 8;
+}
+
+/* SELLO DE LACRE */
+.sello {
+    position: absolute;
+    z-index: 20;
+    background: radial-gradient(circle, #d32f2f 0%, #880e4f 100%);
+    color: gold;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    border: 6px double gold;
+    font-size: 55px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 15px rgba(0,0,0,0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+.sello:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 30px #ff1744;
+    color: white;
+}
+
+/* TEXTOS */
+.titulo {
+    color: #c2185b;
+    font-family: 'Georgia', serif;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.instruccion {
+    color: #ad1457;
+    font-weight: bold;
+    margin-top: 40px;
+    letter-spacing: 5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* CONTENEDOR DE LA CARTA (Animación de salida/regreso) */
+.carta-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 100;
+    
+    /* Estado inicial: oculto y dentro del sobre */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background: rgba(0,0,0,0);
+    transition: all 0.7s ease-in-out;
+}
+
+/* MODAL DE LA CARTA */
+.modal-carta {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    text-align: center;
+    max-height: 90vh;
+    overflow-y: auto;
+    
+    /* Efecto de escala inicial desde el sobre */
+    transform: scale(0) translateY(100px);
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Clase activa cuando la carta sale */
+.carta-container.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    background: rgba(0,0,0,0.4);
+}
+
+.carta-container.active .modal-carta {
+    transform: scale(1) translateY(0);
+}
+
+.header-carta {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.codigo-romantico {
+    background-color: #262730;
+    color: #f92672;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    border-left: 5px solid #ff4b4b;
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.frase-elegante {
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    color: #4a4a4a;
+    font-style: italic;
+    padding: 10px;
+}
+
+.subtitulo {
+    color: #c2185b;
+    margin-top: 20px;
+}
+
+.texto-final {
+    color: #555;
+    line-height: 1.5;
+}
+
+.gif-romantico {
+    width: 100%;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.btn-cerrar {
+    background: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.btn-cerrar:hover {
+    background: #d32f2f;
+    transform: scale(1.02);
+}

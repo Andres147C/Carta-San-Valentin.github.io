@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Regalo de San Valentín 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="main-container" class="main-container">
+        <h1 class="titulo">Para mi Amor ❤️</h1>
+        
+        <!-- Agregamos ID al sobre para controlar la tapa -->
+        <div id="envelope-obj" class="envelope">
+            <button class="sello" onclick="abrirSobre()">❤️</button>
+        </div>
+        
+        <p class="instruccion">HAZ CLIC PARA ABRIR</p>
+    </div>
+
+    <!-- El contenedor ya no usa hidden, se controla con CSS para la animación -->
+    <div id="carta-container" class="carta-container">
+        <div class="modal-carta">
+            <div class="header-carta">💌 Archivo: amor_eterno.py</div>
+            
+            <div class="codigo-romantico">
+                <span style="color: #75715e;"># Definiendo el sentimiento más puro</span><br>
+                <span style="color: #66d9ef;">def</span> <span style="color: #a6e22e;">mi_mundo</span>():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;tu_sonrisa = <span style="color: #ae81ff;">float('inf')</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66d9ef;">while</span> tu_sonrisa:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f8f8f2;">latidos_por_segundo += 1</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66d9ef;">yield</span> <span style="color: #e6db74;">"Te amo más que ayer"</span><br><br>
+                <span style="color: #75715e;">// Eres mi punto y coma favorito; sin ti, mi vida no tiene sentido.</span>
+            </div>
+
+            <hr>
+
+            <div class="frase-elegante">
+                "Dicen que programar es dar instrucciones, pero lo que siento por ti 
+                no sigue ningún algoritmo. Eres el <b>'import'</b> que le faltaba a mi vida 
+                para que todo funcionara correctamente."
+            </div>
+
+            <h3 class="subtitulo">Eres mi mejor compilación ❤️</h3>
+            <p class="texto-final">
+                A tu lado no hay errores de sintaxis, porque conectamos perfectamente. 
+                Gracias por ser esa luz que ilumina mi consola y por hacer que cada día 
+                mi vida sea una versión mejorada llena de felicidad.
+            </p>
+
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXN6bm9oM2RxeXp6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9iZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Amor" class="gif-romantico">
+
+            <button class="btn-cerrar" onclick="cerrarSistema()">Cerrar sistema con un beso 💋</button>
+        </div>
+    </div>
+
+    <script>
+        function abrirSobre() {
+            const envelope = document.getElementById('envelope-obj');
+            const container = document.getElementById('carta-container');
+            
+            // 1. Abrir la tapa del sobre
+            envelope.classList.add('open-lid');
+            
+            // 2. La carta sale del sobre después de un momento
+            setTimeout(() => {
+                container.classList.add('active');
+            }, 400);
+        }
+
+        function cerrarSistema() {
+            const envelope = document.getElementById('envelope-obj');
+            const container = document.getElementById('carta-container');
+            
+            // 1. La carta regresa al sobre (se encoge y baja)
+            container.classList.remove('active');
+            
+            // 2. Cerramos la tapa cuando la carta ya entró
+            setTimeout(() => {
+                envelope.classList.remove('open-lid');
+            }, 600);
+        }
+    </script>
+</body>
+</html>
